@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f7f2">
+  <meta name="description" content="Plan a thoughtful, personalized journey with your AI travel companion.">
+  <title>Roamly — AI Journey Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Roamly home"><span class="brand-mark">✳</span><span>roamly<span class="brand-dot">.</span></span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#planner" data-i18n="nav_plan">Plan a trip</a>
+      <a href="#itinerary" data-i18n="nav_itinerary">My itinerary</a>
+      <a href="#assistant" data-i18n="nav_assistant">AI assistant</a>
+    </nav>
+    <div class="top-actions">
+      <label class="language-picker" for="languageSelect" aria-label="Choose language"><span aria-hidden="true">文</span><select id="languageSelect"><option value="en">English</option><option value="ta">தமிழ்</option><option value="hi">हिन्दी</option></select></label>
+      <a class="top-cta" href="#planner" data-i18n="nav_cta">Start planning <span>↗</span></a>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="hero_eyebrow">A LITTLE MORE WONDER, A LOT LESS PLANNING</span></div>
+        <h1 data-i18n="hero_title">Your next great<br>story starts <em>here.</em></h1>
+        <p data-i18n="hero_subtitle">Thoughtful trips, made around you. Tell us what you love and we’ll help turn it into a journey worth remembering.</p>
+        <a class="hero-link" href="#planner"><span data-i18n="hero_link">Plan your journey</span><span class="arrow-circle">↓</span></a>
+        <div class="hero-proof"><div class="avatar-stack"><span>J</span><span>M</span><span>A</span><span>+</span></div><span data-i18n="hero_proof">Made for curious travelers</span></div>
+      </div>
+      <div class="hero-art" aria-label="Illustration of a scenic mountain journey" role="img">
+        <div class="art-sun"></div><div class="art-cloud cloud-one"></div><div class="art-cloud cloud-two"></div>
+        <div class="art-mountain mountain-back"></div><div class="art-mountain mountain-front"></div><div class="art-river"></div>
+        <div class="art-postcard"><span class="postcard-icon">✈</span><span data-i18n="art_note">GO WHERE<br>YOU FEEL MOST ALIVE</span><span class="postcard-line"></span></div>
+        <span class="art-label label-one">18° 31′ N</span><span class="art-label label-two">✦ YOUR NEXT CHAPTER</span>
+      </div>
+    </section>
+
+    <section class="planner-section" id="planner">
+      <div class="section-heading">
+        <div><span class="section-kicker" data-i18n="planner_kicker">THE GOOD PART STARTS NOW</span><h2 data-i18n="planner_title">Let’s plan your escape.</h2></div>
+        <p data-i18n="planner_hint">A few details are all we need to get going.</p>
+      </div>
+      <div class="planner-grid">
+        <form class="planner-form panel" id="tripForm">
+          <div class="form-topline"><span class="step-number">01</span><span data-i18n="form_heading">Your trip, your way</span><span class="required-note" data-i18n="required_note">* Required</span></div>
+          <div class="location-row">
+            <label class="field"><span data-i18n="from_label">STARTING FROM</span><span class="input-wrap"><span class="field-icon">⌖</span><input id="origin" name="origin" placeholder="e.g. Chennai" required maxlength="100" autocomplete="address-level2"></span></label>
+            <span class="route-dots" aria-hidden="true">···</span>
+            <label class="field"><span data-i18n="to_label">HEADED TO</span><span class="input-wrap"><span class="field-icon destination-icon">●</span><input id="destination" name="destination" placeholder="e.g. Munnar" required maxlength="100" autocomplete="address-level2"></span></label>
+          </div>
+          <div class="field-grid">
+            <label class="field"><span data-i18n="depart_label">DEPARTURE</span><span class="input-wrap"><span class="field-icon">▦</span><input id="startDate" name="startDate" type="date" required></span></label>
+            <label class="field"><span data-i18n="return_label">RETURN</span><span class="input-wrap"><span class="field-icon">▦</span><input id="endDate" name="endDate" type="date" required></span></label>
+          </div>
+          <div class="field-grid">
+            <label class="field"><span data-i18n="travelers_label">TRAVELERS</span><span class="input-wrap"><span class="field-icon">♧</span><input id="travelers" name="travelers" type="number" min="1" max="20" value="2" required><span class="input-suffix" data-i18n="people">people</span></span></label>
+            <label class="field"><span data-i18n="budget_label">TOTAL BUDGET (₹)</span><span class="input-wrap"><span class="field-icon">₹</span><input id="budget" name="budget" type="number" min="1000" step="500" value="50000" required><span class="input-suffix" data-i18n="total">total</span></span></label>
+          </div>
+          <fieldset class="interest-fieldset"><legend data-i18n="interests_label">WHAT ARE YOU IN THE MOOD FOR?</legend><p data-i18n="interests_hint">Pick as many as you like</p><div class="interest-list" id="interestList">
+            <button type="button" class="interest-chip" data-interest="beaches">🏖 <span data-i18n="interest_beaches">Beaches</span></button>
+            <button type="button" class="interest-chip" data-interest="mountains">⛰ <span data-i18n="interest_mountains">Mountains</span></button>
+            <button type="button" class="interest-chip" data-interest="temples">🛕 <span data-i18n="interest_temples">Temples</span></button>
+            <button type="button" class="interest-chip" data-interest="history">🏛 <span data-i18n="interest_history">History</span></button>
+            <button type="button" class="interest-chip" data-interest="adventure">🧗 <span data-i18n="interest_adventure">Adventure</span></button>
+            <button type="button" class="interest-chip" data-interest="food">🍜 <span data-i18n="interest_food">Local food</span></button>
+            <button type="button" class="interest-chip" data-interest="nature">🌿 <span data-i18n="interest_nature">Nature</span></button>
+            <button type="button" class="interest-chip" data-interest="shopping">🛍 <span data-i18n="interest_shopping">Shopping</span></button>
+          </div></fieldset>
+          <label class="field preferences-field"><span data-i18n="preferences_label">ANYTHING ELSE WE SHOULD KNOW?</span><textarea id="preferences" name="preferences" rows="2" maxlength="500" placeholder="Vegetarian food, slow mornings, hidden gems..."></textarea></label>
+          <button class="primary-button generate-button" id="generateButton" type="submit"><span data-i18n="generate">Build my journey</span><span class="button-arrow">↗</span></button>
+          <p class="privacy-note"><span>✦</span> <span data-i18n="privacy_note">Your details stay in this session. No account needed.</span></p>
+        </form>
+
+        <aside class="preview-column">
+          <div class="route-card panel" id="routeCard">
+            <div class="route-card-top"><div><span class="section-kicker" data-i18n="route_kicker">THE WAY THERE</span><h3 data-i18n="route_title">Your route, at a glance</h3></div><span class="route-badge" id="routeBadge">—</span></div>
+            <div class="map-illustration" id="mapIllustration">
+              <svg viewBox="0 0 540 220" role="img" aria-label="Illustrative route map"><path class="map-road" d="M-10 159 C72 125 82 195 161 164 S242 91 303 123 S397 180 446 112 S514 68 556 87"/><path class="map-road-secondary" d="M15 42 C97 77 103 20 182 55 S254 195 340 177 S435 36 544 30"/><path class="map-route" d="M73 151 C137 154 141 142 184 144 S242 106 285 112 S338 143 390 120 S434 78 477 83"/><circle class="map-pin-start" cx="73" cy="151" r="8"/><circle class="map-pin-end" cx="477" cy="83" r="8"/><circle class="map-pin-pulse" cx="73" cy="151" r="15"/><circle class="map-pin-pulse end-pulse" cx="477" cy="83" r="15"/></svg>
+              <span class="map-label map-label-start" id="mapOrigin">YOUR START</span><span class="map-label map-label-end" id="mapDestination">YOUR DESTINATION</span>
+              <span class="map-note" id="mapNote" data-i18n="map_placeholder">Route preview appears after planning</span>
+            </div>
+            <div class="route-stats"><div><span class="stat-icon">↗</span><span class="stat-label" data-i18n="distance_label">DISTANCE</span><strong id="distanceValue">—</strong></div><div><span class="stat-icon">◷</span><span class="stat-label" data-i18n="duration_label">TRAVEL TIME</span><strong id="durationValue">—</strong></div><div><span class="stat-icon">☀</span><span class="stat-label" data-i18n="weather_label">WEATHER</span><strong id="weatherValue">—</strong></div></div>
+            <p class="data-note" id="routeDataNote" data-i18n="route_data_note">Live route and forecast details appear when data is available.</p>
+          </div>
+          <div class="tip-card"><span class="tip-sparkle">✳</span><div><strong data-i18n="tip_title">A good trip has room to wander.</strong><p data-i18n="tip_text">We’ll balance must-sees with space for the unexpected.</p></div><span class="tip-doodle">〰</span></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="results-section hidden" id="resultsSection">
+      <div class="section-heading results-heading" id="itinerary"><div><span class="section-kicker" data-i18n="itinerary_kicker">YOUR PERSONALIZED PLAN</span><h2><span data-i18n="itinerary_title">The days ahead.</span> <span class="heading-destination" id="headingDestination"></span></h2></div><span class="source-label" id="sourceLabel"></span></div>
+      <div class="results-grid">
+        <div class="itinerary-list" id="itineraryList"></div>
+        <aside class="results-sidebar">
+          <div class="budget-card panel"><div class="budget-heading"><div><span class="section-kicker" data-i18n="budget_kicker">THE NUMBERS</span><h3 data-i18n="budget_title">Budget snapshot</h3></div><span class="budget-icon">₹</span></div><div class="budget-total-line"><span data-i18n="estimated_total">Estimated total</span><strong id="estimatedTotal">₹0</strong></div><div class="budget-bar"><span id="budgetBar"></span></div><div class="budget-remaining"><span data-i18n="remaining">Left in your budget</span><strong id="remainingBudget">₹0</strong></div><div class="budget-breakdown" id="budgetBreakdown"></div><p class="budget-disclaimer" data-i18n="budget_disclaimer">Estimates are planning guides, not live prices.</p></div>
+          <div class="weather-card panel" id="weatherCard"><span class="section-kicker" data-i18n="weather_kicker">PACKING CHECK</span><h3 data-i18n="weather_card_title">A look at the skies</h3><p id="weatherDetails" data-i18n="weather_placeholder">Forecast will show here when available for your travel dates.</p><div class="weather-advice" id="weatherAdvice"></div></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="assistant-section hidden" id="assistant">
+      <div class="assistant-intro"><span class="assistant-orb">✳</span><div><span class="section-kicker" data-i18n="assistant_kicker">YOUR TRAVEL SIDEKICK</span><h2 data-i18n="assistant_title">Want to make a little change?</h2><p data-i18n="assistant_subtitle">Ask for a slower morning, a new food stop, or anything else.</p></div></div>
+      <div class="chat-panel panel"><div class="chat-messages" id="chatMessages" aria-live="polite"><div class="chat-message assistant-message"><span class="chat-avatar">✳</span><p data-i18n="chat_welcome">Your trip is taking shape. Tell me what you’d like to change.</p></div></div><form id="chatForm" class="chat-form"><label class="sr-only" for="chatInput" data-i18n="chat_label">Message your travel assistant</label><input id="chatInput" name="message" placeholder="e.g. Add a relaxed café morning on day 2" maxlength="500" autocomplete="off" required><button type="submit" id="chatSend" aria-label="Send message">↑</button></form><div class="chat-suggestions"><button type="button" data-prompt="Add more local food stops">+ <span data-i18n="suggest_food">More local food</span></button><button type="button" data-prompt="Make the trip more relaxed">+ <span data-i18n="suggest_relaxed">Slow the pace</span></button><button type="button" data-prompt="Add one nature activity">+ <span data-i18n="suggest_nature">Nature time</span></button></div></div>
+    </section>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </main>
+  <footer class="footer"><a class="brand footer-brand" href="#home"><span class="brand-mark">✳</span><span>roamly<span class="brand-dot">.</span></span></a><span data-i18n="footer_note">Made for the joy of getting there.</span><a href="#home" data-i18n="back_top">Back to top ↑</a></footer>
+</body>
+</html>
